@@ -17,17 +17,18 @@ public class CategoriaResource {
 	public List<Categoria> listar() {
 		Categoria categoria = new Categoria();
 		categoria.setNome("Informatica");
+		
 		Categoria categoria2 = new Categoria();
 		categoria2.setNome("Material de Venda");
 		
 		List<Categoria> categorias = new ArrayList<>();
-		
 		categorias.add(categoria);
 		categorias.add(categoria2);
 		
 		for (Categoria cat : categorias) {
 			System.out.println(cat);
 		}
+		
 		return categorias;
 	}
 	
