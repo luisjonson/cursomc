@@ -1,7 +1,5 @@
 package com.treinamento.resources;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +19,9 @@ public class CategoriaResource {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
-		Optional<Categoria> categoria = service.buscar(id);
+		Categoria categoria = service.find(id);
 		
-		if(categoria.isPresent()) {
+		if(categoria != null) {
 			return ResponseEntity.ok().body(categoria);
 		}
 		return null;
