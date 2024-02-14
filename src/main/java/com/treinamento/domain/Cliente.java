@@ -19,9 +19,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -31,16 +31,18 @@ public class Cliente implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
-	
+
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
+
+	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {
 		super();
 	}
 
-	public Cliente( String nome, String email, TipoCliente tipo) {
+	public Cliente(String nome, String email, TipoCliente tipo) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -87,6 +89,10 @@ public class Cliente implements Serializable{
 		return telefones;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -109,7 +115,5 @@ public class Cliente implements Serializable{
 		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", tipo=" + tipo + ", enderecos="
 				+ enderecos + ", telefones=" + telefones + "]";
 	}
-	
-	
 
 }
