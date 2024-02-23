@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 @Entity
 public class Pedido implements Serializable {
@@ -20,19 +22,22 @@ public class Pedido implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "pedido")
 	private Pagamento pagamento;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
+	@ManyToOne
+	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco enderecoEntrega;
 
 	public Pedido() {
 
 	}
 
-	public Pedido(Date instante, Pagamento pagamento, Cliente cliente, Endereco enderecoEntrega) {
+	public Pedido(Date instante, Cliente cliente, Endereco enderecoEntrega) {
 		super();
 		this.instante = instante;
-		this.pagamento = pagamento;
 		this.cliente = cliente;
 		this.enderecoEntrega = enderecoEntrega;
 	}

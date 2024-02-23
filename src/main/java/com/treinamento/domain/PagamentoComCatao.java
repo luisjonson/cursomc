@@ -2,6 +2,9 @@ package com.treinamento.domain;
 
 import com.treinamento.domain.enums.EstadoPagamento;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class PagamentoComCatao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
