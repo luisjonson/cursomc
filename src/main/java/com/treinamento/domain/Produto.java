@@ -2,8 +2,10 @@ package com.treinamento.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -32,6 +34,8 @@ public class Produto implements Serializable {
 			)
 	private List<Categoria> categorias =  new ArrayList<>();
 	
+	private Set<ItemPedido> itens = new HashSet<>();
+	
 	public Produto() {
 	}
 	
@@ -39,6 +43,12 @@ public class Produto implements Serializable {
 		super();
 		this.nome = nome;
 		this.preco = preco;
+	}
+	
+	public List<Pedido> getPedidos(){
+		List<Pedido> lista = new ArrayList<>();
+		itens.forEach( p -> {lista.add(p.getPedido());});
+		return lista;
 	}
 
 	public Integer getId() {
