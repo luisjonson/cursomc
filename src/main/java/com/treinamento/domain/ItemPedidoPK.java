@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 @Embeddable
 public class ItemPedidoPK implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
@@ -49,6 +49,11 @@ public class ItemPedidoPK implements Serializable {
 			return false;
 		ItemPedidoPK other = (ItemPedidoPK) obj;
 		return Objects.equals(pedido, other.pedido) && Objects.equals(produto, other.produto);
+	}
+
+	@Override
+	public String toString() {
+		return "ItemPedidoPK [pedido=" + pedido + ", produto=" + produto + "]";
 	}
 
 }

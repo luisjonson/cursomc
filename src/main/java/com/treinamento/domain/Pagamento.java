@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.treinamento.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -24,7 +25,7 @@ public abstract class Pagamento implements Serializable {
 	
 	@MapsId
 	@OneToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 
