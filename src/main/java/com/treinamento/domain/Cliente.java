@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.treinamento.domain.enums.TipoCliente;
 
@@ -28,6 +27,7 @@ public class Cliente implements Serializable {
 	private Integer id;
 	private String nome;
 	private String email;
+	private String cpfOuCnpj;
 	private Integer tipo;
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -44,11 +44,12 @@ public class Cliente implements Serializable {
 		super();
 	}
 
-	public Cliente(String nome, String email, TipoCliente tipo) {
+	public Cliente(String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
 		super();
 		this.nome = nome;
 		this.email = email;
-		this.tipo = tipo.getCod();
+		this.cpfOuCnpj = cpfOuCnpj;
+		this.tipo = (tipo==null) ? null : tipo.getCod();
 	}
 
 	public Integer getId() {
@@ -73,6 +74,14 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
+	}
+
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
 	public TipoCliente getTipo() {
